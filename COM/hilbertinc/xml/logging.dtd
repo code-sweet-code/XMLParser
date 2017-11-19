@@ -1,0 +1,214 @@
+<!-- logging.dtd 
+ !
+ !  This defines the documents that are used to pass information
+ !  between applications that want to log information and services
+ !  that manage and report on the log data.  It encompasses two
+ !  broad categories of log information.  The first is the representation
+ !  of metrics data such as response times, queue depths and transaction
+ !  counters.
+ !
+ !  The second broad category is for logging information and error conditions
+ !  within an application.
+ !
+-->
+
+<!ELEMENT log ( fromdate 
+              | todate 
+              | metrics 
+              | information
+              | warning
+              | errors
+              | fatal
+              )+
+              >
+
+
+<!ELEMENT fromdate EMPTY>
+<!ATTLIST fromdate month
+                     ( 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12
+                     ) #REQUIRED
+                   day
+                     ( 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
+                     | 30 | 31
+                     ) #REQUIRED
+                   year   CDATA #REQUIRED
+                   hour
+                     ( 00 | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 
+                     ) #REQUIRED
+                   minute
+                     ( 00 | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
+                     | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39
+                     | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49
+                     | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59
+                     ) #REQUIRED
+                   second
+                     ( 00 | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
+                     | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39
+                     | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49
+                     | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59
+                     ) #IMPLIED
+                   millisecond  CDATA #IMPLIED
+                   >
+
+<!ELEMENT todate   EMPTY>
+<!ATTLIST todate   month
+                     ( 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12
+                     ) #REQUIRED
+                   day
+                     ( 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
+                     | 30 | 31
+                     ) #REQUIRED
+                   year   CDATA #REQUIRED
+                   hour
+                     ( 00 | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 
+                     ) #REQUIRED
+                   minute
+                     ( 00 | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
+                     | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39
+                     | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49
+                     | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59
+                     ) #REQUIRED
+                   second
+                     ( 00 | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
+                     | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39
+                     | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49
+                     | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59
+                     ) #IMPLIED
+                   millisecond  CDATA #IMPLIED
+                   >
+
+<!-- Metrics section
+ !   
+ ! These elements and attributes relate to the logging metrics
+ ! information
+ !
+-->
+
+<!ELEMENT metrics (group)+>
+<!ATTLIST metrics application CDATA #IMPLIED>
+
+<!ELEMENT group   (timestamp? , (counter | response)+)>
+
+<!ELEMENT timestamp EMPTY>
+<!ATTLIST timestamp 
+                   month
+                     ( 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12
+                     ) #REQUIRED
+                   day
+                     ( 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
+                     | 30 | 31
+                     ) #REQUIRED
+                   year   CDATA #REQUIRED
+                   hour
+                     ( 00 | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 
+                     ) #REQUIRED
+                   minute
+                     ( 00 | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
+                     | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39
+                     | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49
+                     | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59
+                     ) #REQUIRED
+                   second
+                     ( 00 | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09
+                     |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 
+                     | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+                     | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
+                     | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39
+                     | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49
+                     | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59
+                     ) #REQUIRED
+                   millisecond  CDATA #IMPLIED
+                   >
+
+<!ELEMENT counter (#PCDATA)>
+<!ATTLIST counter name      CDATA #REQUIRED
+                  category  CDATA #IMPLIED
+                  value     CDATA #REQUIRED
+                  >
+
+<!ELEMENT response (#PCDATA)>
+<!ATTLIST response name         CDATA #REQUIRED
+                   category     CDATA #IMPLIED
+                   milliseconds CDATA #REQUIRED
+                   >
+
+
+
+<!-- Textual event logging section
+ !   
+ ! These elements and attributes relate to the logging of information
+ ! from an application
+-->
+
+<!ELEMENT information (timestamp? , component? , text)>
+<!ATTLIST information application  CDATA #REQUIRED
+                      level
+                        ( 0 | 1 | 2 | 3 | 00 | 01 | 02 | 03) "0"
+                      >
+                      
+<!ELEMENT warning     (timestamp? , component? , text)>
+<!ATTLIST warning     application  CDATA #REQUIRED
+                      level
+                        ( 4 | 5 | 6 | 7 | 04 | 05 | 06 | 07) "4"
+                      >
+                      
+<!ELEMENT error       (timestamp? , component? , text)>
+<!ATTLIST error       application  CDATA #REQUIRED
+                      level
+                        ( 8 | 9 | 10 | 11 | 08 | 09 ) "8"
+                      >
+                      
+<!ELEMENT fatal       (timestamp? , component? , text)>
+<!ATTLIST fatal       application  CDATA #REQUIRED
+                      level
+                        ( 12 | 13 | 14 | 15 ) "12"
+                      >
+                      
+<!ELEMENT component EMPTY>
+<!ATTLIST component name      CDATA #REQUIRED
+                    class     CDATA #IMPLIED
+                    method    CDATA #IMPLIED
+                    line      CDATA #IMPLIED
+                    routine   CDATA #IMPLIED
+                    >
+                    
+<!ELEMENT text (#PCDATA)>
