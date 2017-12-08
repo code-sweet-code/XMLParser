@@ -98,8 +98,12 @@ private static void runReflectiveTest(String srcFileName, String destFileName) {
 	NewParser p = new NewParser();
 	try {
 		p.parse(srcFileName);
-		p.traverse(new ReflectiveHTMLVisitor());
+		Visitor visitor = new ReflectiveHTMLVisitor(destFileName);
+		p.traverse(visitor);
 	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}

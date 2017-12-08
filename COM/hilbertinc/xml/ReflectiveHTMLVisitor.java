@@ -1,8 +1,17 @@
 package COM.hilbertinc.xml;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
 import org.w3c.dom.*;
 
 public class ReflectiveHTMLVisitor extends AbstractReflectiveVisitor {
+	private Writer writer;
+	public ReflectiveHTMLVisitor(String filename) throws IOException {
+		writer = new FileWriter(filename);
+	}
+	
 	public void visitElement(Element element) {
 		//TODO
 		System.out.println("element: "+element.getTagName());
