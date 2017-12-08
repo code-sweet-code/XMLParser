@@ -93,8 +93,15 @@ public static void main(java.lang.String[] args)
 	
 	return;
 	}
-private static void runReflectiveTest(String destFileName, String destFileName2) {
+private static void runReflectiveTest(String srcFileName, String destFileName) {
 	// TODO Auto-generated method stub
-	
+	NewParser p = new NewParser();
+	try {
+		p.parse(srcFileName);
+		p.traverse(new ReflectiveHTMLVisitor());
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
 }

@@ -4,7 +4,7 @@ import java.lang.reflect.*;
 import java.util.*;
 import COM.hilbertinc.xml.*;
 
-public class AbstractReflectiveVisitor implements Visitor {
+public abstract class AbstractReflectiveVisitor implements Visitor {
 
 	// ClassMap is a static cache hashmap of hashmaps that 
 	// stores previously located visit methods on visitor 
@@ -16,7 +16,7 @@ public class AbstractReflectiveVisitor implements Visitor {
 
 	// VISITOR METHODS
   
-	public void dispatch( Object object ) {
+	protected void dispatch( Object object ) {
 		try {
 			// find the method to invoke
 			Method method = getMethod( object.getClass() );
@@ -40,11 +40,13 @@ public class AbstractReflectiveVisitor implements Visitor {
 	// VISIT METHODS
   
 	public void visit( Object object ) {
+		if(object != null)
+			dispatch(object);
 	}
 
 	// SUPPORT METHODS
   
-	public void callAccept( COM.hilbertinc.xml.Visitable v ) throws Exception {
+	protected void callAccept( COM.hilbertinc.xml.Visitable v ) throws Exception {
 		v.accept( this );
 	}
 
